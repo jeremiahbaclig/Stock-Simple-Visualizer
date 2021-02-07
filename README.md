@@ -9,7 +9,7 @@ For future updates (TO-DO):
 ```
 - Complete weekly data values. 
 - Additional error handling for more situations.
-- Interactive graph data (MatPlotLib and Pandas).
+- Interactive graph data (Matplotlib and Pandas).
 - Interactive calculator from Open, Close, Low, High.
 - Choose time-frame.
 - Choose single day data.
