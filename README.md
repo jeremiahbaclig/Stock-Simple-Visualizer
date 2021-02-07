@@ -1,4 +1,4 @@
-# Stock-Simple-Visualizer
+Stock-Simple-Visualizer
 Prototype of a stock analysis application. Pulls from the *Alpha Vantage API* and utilizes *PySimpleGUI* to receive user input. Continuously 
 takes user input from given stock symbol, date, and outputs based on daily (averaged throughout the week) or weekly data (in progreess). 
 In this simple version, basic error handling is considered for incorrect dates, symbols, or overflow. API key required to use.
