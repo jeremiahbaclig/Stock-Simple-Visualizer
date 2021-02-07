@@ -3,6 +3,8 @@ Prototype of a stock analysis application. Pulls from the *Alpha Vantage API* an
 takes user input from given stock symbol, date, and outputs based on daily (averaged throughout the week) or weekly data (in progreess). 
 In this simple version, basic error handling is considered for incorrect dates, symbols, or overflow. API key required to use.
 
+![](stonks_prototype.gif)
+
 For future updates (TO-DO):
 ```
 - Complete weekly data values. 
