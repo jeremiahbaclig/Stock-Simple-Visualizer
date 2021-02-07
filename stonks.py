@@ -37,7 +37,6 @@ def get_stock(symbol, year, month, day, daily):
         r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=' + symbol.upper() +
                          '&apikey=' + API_KEY)
         result = r.json()
-        print(result)
         weeks = result['Weekly Time Series']
         try:
             thisDay = weeks[str(year) + '-' + str(month) + '-' + str(day)]  # NEEDS TO BE A FRIDAY
@@ -66,7 +65,7 @@ def show_stock(symbol, year, month, day, flag):
     OL_AVG = (week_open + week_low) / 2
     CL_AVG = (week_close + week_low) / 2
 
-    stock_display = [[sg.Text(symbol.upper())],
+    stock_display = [[sg.Text(symbol.upper(), font=("Helvetica", 12, 'bold'))],
                      [sg.Text('\t\tAverage weekly values (by day):\t')],
                      [sg.Text('OPEN:\t\t'), sg.Text(f'{week_open:.2f}'), sg.Text('\tOPEN+HIGH:\t\t'),
                       sg.Text(f'{OH_AVG:.2f}')],
@@ -107,6 +106,10 @@ def start():
                                                                                      default=False, key='WEEKLY')],
                   [sg.Button('Enter'), sg.Button('Quit')]]
 
+        current_theme = sg.theme()
+        if current_theme is 'DarkBlue3':
+            sg.theme('DarkBlue')
+            continue
         window = sg.Window('ENTER', layout, no_titlebar=True, alpha_channel=.75, grab_anywhere=True)
         event, values = window.read()
 
@@ -114,7 +117,7 @@ def start():
             window.close()
             break
         elif event == 'Dark Blue (default)':
-            sg.theme('DarkBlue3')
+            sg.theme('DarkBlue')
             window.close()
             continue
         elif event == 'System Default':
