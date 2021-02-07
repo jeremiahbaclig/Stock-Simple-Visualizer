@@ -36,7 +36,18 @@ def get_stock(symbol, year, month, day, daily):
         r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol=' + symbol.upper() +
                          '&apikey=' + API_KEY)
         result = r.json()
+        print(result)
         weeks = result['Weekly Time Series']
+        try:
+            thisDay = weeks[str(year) + '-' + str(month) + '-' + str(day)]  # NEEDS TO BE A FRIDAY
+        except KeyError:
+            return -2, -2, -2, -2
+
+        week_open = float(thisDay['1. open'])
+        week_high = float(thisDay['2. high'])
+        week_low = float(thisDay['3. low'])
+        week_close = float(thisDay['4. close'])
+
         return week_open, week_high, week_low, week_close
 
 
@@ -45,6 +56,8 @@ def show_stock(symbol, year, month, day, flag):
 
     if (week_open or week_high or week_low or week_close) is -1:
         sg.Popup("ERROR: Invalid date entered.")
+    elif (week_open or week_high or week_low or week_close) is -2:
+        sg.Popup("ERROR: Invalid date entered (weekly data is on Fridays).")
 
     OH_AVG = (week_open+week_high)/2
     CH_AVG = (week_close+week_high)/2
