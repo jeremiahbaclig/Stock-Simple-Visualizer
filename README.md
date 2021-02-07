@@ -7,7 +7,6 @@ In this simple version, basic error handling is considered for incorrect dates, 
 
 For future updates (TO-DO):
 ```
-- Complete weekly data values. 
 - Additional error handling for more situations.
 - Interactive graph data (Matplotlib and Pandas).
 - Interactive calculator from Open, Close, Low, High.
