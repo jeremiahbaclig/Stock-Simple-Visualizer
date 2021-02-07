@@ -7,12 +7,14 @@ In this simple version, basic error handling is considered for incorrect dates, 
 
 For future updates (TO-DO):
 ```
-- Additional error handling for more situations.
-- Interactive graph data (Matplotlib and Pandas).
-- Interactive calculator from Open, Close, Low, High.
-- Choose time-frame.
-- Choose single day data.
-- Web support (PySimpleGUIWeb)
+- [ ] Additional error handling for more situations.
+- [ ] Interactive graph data (Matplotlib and Pandas).
+- [ ] Interactive calculator from Open, Close, Low, High.
+- [ ] Choose time-frame.
+- [ ] Choose single day data.
+- [ ] Web support (PySimpleGUIWeb)
+- [x] Add weekly data.
+- [x] Menu options.
 ```
 
 Alpha Vantage Documentation:
