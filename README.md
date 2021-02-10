@@ -7,7 +7,6 @@ In this simple version, basic error handling is considered for incorrect dates, 
 ![](media/stonks_prototype2.gif)
 
 For future updates (TO-DO):
-```
 - [ ] Additional error handling for more situations.
 - [ ] Interactive graph data (Matplotlib and Pandas).
 - [ ] Interactive calculator from Open, Close, Low, High.
@@ -16,7 +15,6 @@ For future updates (TO-DO):
 - [ ] Web support (PySimpleGUIWeb)
 - [x] Add weekly data.
 - [x] Menu options.
-```
 
 Alpha Vantage Documentation:
 https://www.alphavantage.co/documentation/
