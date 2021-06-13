@@ -5,7 +5,7 @@ takes user input from given stock symbol, date, and outputs based on daily (aver
 In this simple version, basic error handling is considered for incorrect dates, symbols, or overflow. API key required to use.
 
 ![](media/stonks_prototype2.gif)
-![image](https://user-images.githubusercontent.com/55364674/121823747-45401680-cc75-11eb-8d4f-99cfa88334ef.png))
+![image](https://user-images.githubusercontent.com/55364674/121823802-7c162c80-cc75-11eb-9333-bee661d1001e.png)
 
 For future updates (TO-DO):
 - [ ] Additional error handling for more situations.
