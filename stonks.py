@@ -2,11 +2,15 @@ import requests
 import PySimpleGUI as sg
 import datetime
 import webbrowser
+import matplotlib.pyplot as plt
 
+plot_values, plot_dates = [], []
 
 def get_stock(symbol, year, month, day, daily):
-    API_KEY = 'API_KEY'
-    day_counter = int(day)
+    plot_values.clear()
+    plot_dates.clear()
+
+    API_KEY = 'B53FM25MA5ZIPEIJ'
     week_open, week_high, week_low, week_close = 0, 0, 0, 0
 
     if daily:
@@ -15,21 +19,29 @@ def get_stock(symbol, year, month, day, daily):
         result = r.json()
         try:
             weeks = result['Time Series (Daily)']
+            print(weeks)
         except KeyError:
             return -1, -1, -1, -1
 
         weekday = datetime.date(year, int(month), int(day)).weekday()
+        current_day = datetime.date(year, int(month), int(day))
 
         try:
             for data in range(5 - int(weekday)):
                 thisDay = weeks[str(year) + '-' + str(month) + '-' + str(day)]
+
+                plot_values.append((weeks[current_day.strftime("%Y-%m-%d")]['1. open']))
+                plot_dates.append(current_day.strftime("%m/%d/%Y"))
+
                 week_open += float(thisDay['1. open'])
                 week_high += float(thisDay['2. high'])
                 week_low += float(thisDay['3. low'])
                 week_close += float(thisDay['4. close'])
-                day_counter += 1
 
-                return week_open, week_high, week_low, week_close
+                current_day += datetime.timedelta(days=1)
+
+            return week_open / (5 - int(weekday)), week_high / (5 - int(weekday)), \
+                   week_low / (5 - int(weekday)), week_close / (5 - int(weekday))
         except KeyError:
             return -1, -1, -1, -1
 
@@ -53,6 +65,12 @@ def get_stock(symbol, year, month, day, daily):
 
 def show_stock(symbol, year, month, day, flag):
     week_open, week_high, week_low, week_close = get_stock(symbol, year, month, day, flag)
+
+    plt.plot(plot_dates, plot_values)
+    plt.xlabel('DATES')
+    plt.ylabel('VALUES ($)')
+    plt.grid()
+    plt.show()
 
     if (week_open or week_high or week_low or week_close) is -1:
         sg.Popup("ERROR: Invalid date entered.")
@@ -79,8 +97,8 @@ def show_stock(symbol, year, month, day, flag):
                      [sg.Text('\tOPEN+CLOSE (TRUE):\t\t'), sg.Text(f'{OC_AVG:.2f}')],
                      [sg.Button('Return')]]
 
+    window = sg.Window('STONKS', stock_display, no_titlebar=True, alpha_channel=.75, grab_anywhere=True)
     while True:
-        window = sg.Window('STONKS', stock_display, no_titlebar=True, alpha_channel=.75, grab_anywhere=True)
         event, values = window.read()
         if event == sg.WINDOW_CLOSED or event == 'Return':
             window.close()
